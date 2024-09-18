@@ -1,0 +1,4 @@
+{
+    "2024-09-18 14:18:29.592521": "HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /user (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7840c8bd7150>: Failed to resolve 'api.github.com' ([Errno -3] Temporary failure in name resolution)\"))",
+    "2024-09-18 14:19:26.859468": "HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /user (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7cdc85bd3450>: Failed to resolve 'api.github.com' ([Errno -3] Temporary failure in name resolution)\"))"
+}

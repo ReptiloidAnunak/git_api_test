@@ -1,5 +1,6 @@
-from time import sleep
-
+import json
+import time
+import datetime
 from github import Github
 from github import Auth
 import os
@@ -54,10 +55,10 @@ def run_git_repositories_test():
     print(user_repositories_link)
 
     new_repo = create_new_repository(git_user, test_repo_name)
-    sleep(10)
+    time.sleep(10)
     check_new_repo_in_repos_lst(git_user, new_repo.name)
     print(user_repositories_link)
-    sleep(5)
+    time.sleep(5)
 
     delete_test_repository(git_user, new_repo)
     user_repos_lst = get_repositories_lst(git_user)
@@ -65,7 +66,30 @@ def run_git_repositories_test():
     print(f'Current repositories amount: {len(user_repos_lst)}')
     print(user_repositories_link)
 
-run_git_repositories_test()
+def save_error_log(error_text):
+    errors_logs_json = os.path.join('errors_logs', 'errors_logs.json')
+    cur_time_str = str(datetime.datetime.now())
+
+    if not os.path.exists(errors_logs_json):
+        with open(errors_logs_json, 'w') as file:
+            file.write(json.dumps({}))
+
+    with open(errors_logs_json, 'r') as file:
+        errors_dict = json.load(file)
+
+    errors_dict[cur_time_str] = error_text
+
+    with open(errors_logs_json, 'w') as file:
+        new_content = json.dumps(errors_dict, indent=4)
+        file.write(new_content)
+
+if __name__ == '__main__':
+    try:
+        run_git_repositories_test()
+    except Exception as e:
+        print(str(e))
+        # error = str(e)
+        save_error_log(str(e))
 
 
 
