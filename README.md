@@ -26,4 +26,5 @@ Windows (PowerShell): `.venv\Scripts\Activate.ps1`<br>
 **Запуск с помощью Docker**
 
 1. Запустите команду сбора докер-контейнера `docker build -t git_api_test .`
-2. Запустите докер-контейнер<br>`docker run -d --name my_git_api_container git_api_test && docker logs -f my_git_api_container`
+2. Запустите докер-контейнер<br>`docker run -d --name git_api_container git_api_test && docker logs -f git_api_container`
+3. Дождитесь выполнения кода
