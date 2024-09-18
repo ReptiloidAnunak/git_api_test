@@ -2,6 +2,13 @@ from time import sleep
 
 from github import Github
 from github import Auth
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+git_login = os.environ.get('GIT_LOGIN')
+git_password = os.environ.get('GIT_TOCKEN')
+test_repo_name = os.environ.get('REPO_NAME')
 
 
 def get_git_user(git_login: str, git_password: str):
@@ -25,7 +32,7 @@ def create_new_repository(git_user, new_repo_name: str):
 def check_new_repo_in_repos_lst(git_user, repo_name):
     user_repos_lst = get_repositories_lst(git_user)
     if repo_name in user_repos_lst:
-        print(f'Repositories list updated: {user_repos_lst}')
+        print(f'\nRepositories list updated: {user_repos_lst}')
         print(f'{repo_name} has been created  & presents in the repositories list')
         print(f'New repositories` amount: {len(user_repos_lst)}')
     else:
@@ -35,10 +42,6 @@ def check_new_repo_in_repos_lst(git_user, repo_name):
 def delete_test_repository(git_user, repo):
     repo.delete()
     print(f'\n\n✅ Repository successfully deleted: {repo.name}')
-
-git_login = 'ReptiloidAnunak'
-git_password = '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'
-test_repo_name = 'test_repo_1'
 
 
 def run_git_repositories_test():
