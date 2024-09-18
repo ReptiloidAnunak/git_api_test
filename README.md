@@ -10,6 +10,8 @@ https://github.com
 
 ## Запуск
 
+**Стандартный запуск**
+<br>
 1. Запустите команду установки виртуального окружения `python3 -m venv .venv`<br>
 2. Актвируйте виртуальное окружение 
 Linux/Mac: `source .venv/bin/activate`<br>
@@ -19,3 +21,9 @@ Windows (PowerShell): `.venv\Scripts\Activate.ps1`<br>
 3. Установите необходимые библиотеки
 `pip install -r requirements.txt`
 4. Запустите код `python test_api.py`
+<br>
+
+**Запуск с помощью Docker**
+
+1. Запустите команду сбора докер-контейнера `docker build -t git_api_test .`
+2. Запустите докер-контейнер<br>`docker run -d --name my_git_api_container git_api_test && docker logs -f my_git_api_container`
