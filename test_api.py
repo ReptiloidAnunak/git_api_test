@@ -5,6 +5,7 @@ from github import Github
 from github import Auth
 import os
 from dotenv import load_dotenv
+from github.NamedUser import NamedUser
 
 load_dotenv()
 git_login = os.environ.get('GIT_LOGIN')
@@ -12,14 +13,14 @@ git_password = os.environ.get('GIT_TOCKEN')
 test_repo_name = os.environ.get('REPO_NAME')
 
 
-def get_git_user(git_login: str, git_password: str):
+def get_git_user(git_login: str, git_password: str) -> NamedUser:
     auth = Auth.Login(git_login,git_password)
     git = Github(auth=auth)
     git_user = git.get_user()
     print(f'\n\n✅ GitHub user has logged in: {git_user.login}')
     return git_user
 
-def get_repositories_lst(git_user):
+def get_repositories_lst(git_user) -> list:
     repos = git_user.get_repos()
     git_users_repos_lst = [r.name for r in repos]
     return git_users_repos_lst
@@ -87,8 +88,6 @@ if __name__ == '__main__':
     try:
         run_git_repositories_test()
     except Exception as e:
-        print(str(e))
-        # error = str(e)
         save_error_log(str(e))
 
 
