@@ -21,10 +21,16 @@ Windows (PowerShell): `.venv\Scripts\Activate.ps1`<br>
 3. Установите необходимые библиотеки
 `pip install -r requirements.txt`
 4. Запустите код `python test_api.py`
-<br>
+<br><br>
 
 **Запуск с помощью Docker**
 
-1. Запустите команду сбора докер-контейнера `docker build -t git_api_test .`
-2. Запустите докер-контейнер<br>`docker run -d --name git_api_container git_api_test && docker logs -f git_api_container`
-3. Дождитесь выполнения кода
+Если на вашем компьютере не установлен Docker, скачайте его по инструкции на [официальном сайте](https://www.docker.com/get-started/)
+
+1. Убедитесь, что вы находитесь в корневой директории, где расположен [Dockerfile](Dockerfile)<br>Запустите команду сбора докер-контейнера `docker build -t git_api_test .`
+2. Запустите докер-контейнер<br>`docker run --restart unless-stopped -d --name git_api_container git_api_test && docker logs -f git_api_container`
+3. Дождитесь выполнения кода<br>
+<br>
+Чтобы посмотреть все логи ошибок в файле `errors_logs/errors_logs.json`, выполните следующие команды:
+-  Зайдите внутрь контейнера: `docker exec -it git_api_container /bin/bash`
+- Получите содержимое файла с логами ошибок: `cat errors_logs/errors_logs.json`
